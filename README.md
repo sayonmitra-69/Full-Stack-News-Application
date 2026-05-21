@@ -7,7 +7,7 @@ A secure, highly modular full-stack news application. It utilizes a dynamic Reac
 ### 💻 Frontend (React.js)
 *   **Centralized State Management**: Uses React Context API to propagate global authentication states smoothly across the entire layout tree.
 *   **Modular Component Layout**: Features a reusable navigation header (`Navbar.js`) and content grid modules (`NewsCard.js`).
-*   **Dedicated Page Routing**: Multi-view layout featuring a home dashboard feed (`home.js`), an account registration portal (`Login.js`), and a user account dashboard (`Profile.js`).
+*   **Dedicated Page Routing**: Multi-view layout featuring a home dashboard feed (`Home.js`), an account registration portal (`Login.js`), and a user account dashboard (`Profile.js`).
 *   **Asynchronous Network Client**: Employs a dedicated service layer (`api.js`) to handle server handshakes, queries, and background requests smoothly.
 
 ### ⚙️ Backend (Express.js)
@@ -19,9 +19,10 @@ A secure, highly modular full-stack news application. It utilizes a dynamic Reac
 
 ## 📁 Project Architecture Directory
 
-The repository follows a clean full-stack architectural design pattern, keeping presentation and processing logic distinctly decoupled:
+The repository follows a clean full-stack architectural design pattern under a single root project workspace container:
 
 ```text
+news-app/
 ├── backend/                       # Server-side environment (Express.js)
 │   ├── controllers/               # Express request and application logic layer
 │   │   ├── authController.js      # Handles user account registration and logins
@@ -39,9 +40,11 @@ The repository follows a clean full-stack architectural design pattern, keeping 
 │   │   └── dataStore.js           # Read/write pipeline manager interacting with users.json
 │   ├── .env                       # Secret variable vault containing environment credentials
 │   ├── package.json               # Backend runtime configurations and dependencies manifest
+│   ├── package-lock.json          # Strict node dependency tree snapshot
 │   └── server.js                  # Main server runtime script and Express bootstrapper
 │
 └── frontend/                      # Client-side interface framework (React.js)
+    ├── public/                    # Global visual resources and root HTML template shell
     ├── src/                       # Application source folder
     │   ├── api/                   # Networking wrappers
     │   │   └── api.js             # Central client logic sending fetch calls to the Express server
@@ -51,15 +54,19 @@ The repository follows a clean full-stack architectural design pattern, keeping 
     │   ├── context/               # Application-wide state hubs
     │   │   └── AuthContext.js     # Manages user authentication variables and login states globally
     │   ├── pages/                 # Full canvas view elements
-    │   │   ├── home.js            # Main page layout rendering news arrays and search tools
+    │   │   ├── Home.js            # Main page layout rendering news arrays and search tools
     │   │   ├── Login.js           # Form container parsing usernames and password submissions
     │   │   └── Profile.js         # User dashboard displaying personal details and bookmarks
     │   ├── App.css                # Custom global view stylesheet overrides
     │   ├── App.js                 # Layout engine routing views and nesting providers
+    │   ├── App.test.js            # Testing suite configuration file for core application node
     │   ├── index.css              # Core typography, reset, and base-level document elements
-    │   └── index.js               # Global application script rendering the React DOM node
-    ├── .gitignore                 # Commands Git to safely ignore node_modules/ and build assets
-    └── package.json               # Frontend dependencies manifest and start scripts
+    │   ├── index.js               # Global application script rendering the React DOM node
+    │   ├── logo.svg               # Vector brand graphic resource
+    │   ├── reportWebVitals.js     # Analytic tool capture scripts testing interface runtime speeds
+    │   └── setupTest.js           # Document configuration file mapping React layout test frames
+    ├── package.json               # Frontend dependencies manifest and start scripts
+    └── package-lock.json          # Stored version lock file tracking frontend packages
 ```
 
 ---
@@ -71,7 +78,7 @@ Follow these steps to run both the frontend interface and backend database simul
 ### 1. Set Up the Express Backend
 1. Open a new terminal console inside the project's server directory:
    ```bash
-   cd backend
+   cd news-app/backend
    ```
 2. Download all declared project runtime libraries:
    ```bash
@@ -92,7 +99,7 @@ Follow these steps to run both the frontend interface and backend database simul
 ### 2. Set Up the React Frontend
 1. Open a separate terminal window and switch over to your client directory:
    ```bash
-   cd frontend
+   cd news-app/frontend
    ```
 2. Download your UI rendering tools and framework dependencies:
    ```bash
