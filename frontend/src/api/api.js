@@ -1,6 +1,6 @@
 // frontend/src/api/api.js
 import axios from "axios";
-const api = axios.create({ baseURL: "http://localhost:5000/api" });
+const api = axios.create({ baseURL: "https://full-stack-news-application.onrender.com/api" });
 
 export function setAuthToken(token) {
   if (token) api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
